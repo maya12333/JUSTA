@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical"
+    android:background="@drawable/back">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="ג'סטה"
+            android:textColor="@color/lightBlue"
+            android:textSize="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="140dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="WELCOME TO"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dela"
+            android:textSize="33dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="ג'סטה"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/abraham"
+            android:textSize="50dp"/>
+
+        <Button
+            android:id="@+id/btRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="70dp"
+            android:text="הרשמה"
+            android:fontFamily="@font/gan"
+            android:textSize="20dp"
+            android:onClick="next"/>
+
+        <Button
+            android:id="@+id/btLogin"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="15dp"
+            android:text="התחברות"
+            android:fontFamily="@font/gan"
+            android:textSize="20dp"
+            android:onClick="next"/>
+
+    </LinearLayout>
+</LinearLayout>

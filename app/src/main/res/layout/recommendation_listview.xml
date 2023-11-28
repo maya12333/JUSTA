@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:background="@drawable/background_design"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_text_design"
+        android:layout_margin="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNameV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="שם המתנדב"
+            android:fontFamily="@font/abraham"
+            android:textColor="@color/black"
+            android:textSize="23dp"/>
+
+        <TextView
+            android:id="@+id/tvPhoneV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="טלפון של המתנדב"
+            android:fontFamily="@font/abraham"
+            android:textColor="@color/black"
+            android:textSize="23dp"/>
+
+        <TextView
+            android:id="@+id/tvTextV"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="מלל ההמלצה"
+            android:fontFamily="@font/abraham"
+            android:textColor="@color/black"
+            android:textSize="35dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

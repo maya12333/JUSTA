@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Contact"
+    android:orientation="vertical"
+    android:background="@drawable/back">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="ג'סטה"
+            android:textColor="@color/lightBlue"
+            android:textSize="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivBackC"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="25dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="יצירת קשר"
+            android:textSize="45dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abraham"/>
+
+        <EditText
+            android:id="@+id/etPhoneNumber"
+            android:layout_marginTop="50dp"
+            android:layout_width="200dp"
+            android:layout_height="70dp"
+            android:hint="הקש מספר טלפון"
+            android:fontFamily="@font/alef"
+            android:textSize="21dp"
+            android:background="@drawable/custom_edittext"
+            android:gravity="center"
+            android:textColorHint="@color/black"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/btSend"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:text="שליחת הודעה"
+            android:textSize="24dp"
+            android:fontFamily="@font/gan"/>
+
+        <Button
+            android:id="@+id/btCall"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="20dp"
+            android:text="חיוג לטלפון"
+            android:textSize="24dp"
+            android:fontFamily="@font/gan"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

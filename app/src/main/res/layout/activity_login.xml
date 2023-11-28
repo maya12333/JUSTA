@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Login"
+    android:orientation="vertical"
+    android:background="@drawable/back">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="ג'סטה"
+            android:textColor="@color/lightBlue"
+            android:textSize="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_marginTop="100dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="התחברות"
+            android:textSize="40dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abraham"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="40dp"
+            android:src="@drawable/ic_lock"/>
+
+        <EditText
+            android:text="1234"
+            android:id="@+id/etPasswordL"
+            android:layout_marginTop="-5dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:hint="סיסמא"
+            android:fontFamily="@font/alef"
+            android:background="@drawable/custom_edittext"
+            android:gravity="center"
+            android:textColorHint="@color/black"/>
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/ic_phone"/>
+
+        <EditText
+            android:text="0507690107"
+            android:id="@+id/etPhoneL"
+            android:layout_marginTop="-6dp"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:hint="טלפון"
+            android:fontFamily="@font/alef"
+            android:background="@drawable/custom_edittext"
+            android:gravity="center"
+            android:textColorHint="@color/black"
+            android:inputType="number"/>
+
+        <Button
+            android:id="@+id/btLoginIn"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_marginTop="50dp"
+            android:text="התחברות"
+            android:fontFamily="@font/gan"
+            android:textSize="20dp"/>
+
+        <TextView
+            android:id="@+id/tvToRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="להרשמה"
+            android:fontFamily="@font/alef"
+            android:textColor="@color/lightBlue"
+            android:textStyle="bold"
+            android:textSize="18dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

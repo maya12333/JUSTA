@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "470031891777",
+    "firebase_url": "https://justa-25222-default-rtdb.firebaseio.com",
+    "project_id": "justa-25222",
+    "storage_bucket": "justa-25222.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:470031891777:android:e262fd4b35686f4bf8f5c0",
+        "android_client_info": {
+          "package_name": "com.example.justa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA85-BDnHeudbmCx-Dk1xp_ugM09i_3h98"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

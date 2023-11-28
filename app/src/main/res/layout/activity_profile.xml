@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Profile"
+    android:orientation="vertical"
+    android:background="@drawable/back">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/rubik"
+            android:gravity="center"
+            android:text="ג'סטה"
+            android:textColor="@color/lightBlue"
+            android:textSize="60dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="-43dp">
+
+        <ImageView
+            android:id="@+id/ivBackP"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_back"
+            android:layout_marginLeft="12dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/ic_person"/>
+
+        <TextView
+            android:id="@+id/tvUsernameP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="שם משתמש"
+            android:textSize="35dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/dela"/>
+
+        <TextView
+            android:id="@+id/tvPhone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="מספר טלפון"
+            android:textSize="30dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abraham"/>
+
+        <TextView
+            android:id="@+id/tvCounter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="1"
+            android:textSize="50dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abraham"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="מספר התנדבויות"
+            android:textSize="23dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/abraham"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="25dp">
+
+            <ImageView
+                android:id="@+id/ivStar1"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_star_black"/>
+
+            <ImageView
+                android:id="@+id/ivStar2"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_star_black"/>
+
+            <ImageView
+                android:id="@+id/ivStar3"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_star_black"/>
+
+            <ImageView
+                android:id="@+id/ivStar4"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_star_black"/>
+
+            <ImageView
+                android:id="@+id/ivStar5"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ic_star_black"/>
+
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/lvRecommendations"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvUpdateP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:text="עדכון פרטים אישיים"
+            android:fontFamily="@font/gan"
+            android:textColor="@color/red"
+            android:textStyle="bold"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

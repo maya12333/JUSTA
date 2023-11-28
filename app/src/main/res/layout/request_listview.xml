@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/background_design"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="360dp"
+        android:layout_height="wrap_content">
+
+        <CheckBox
+            android:id="@+id/cbConfirm"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginRight="305dp"
+            android:layout_marginLeft="-2dp"
+            android:layout_marginTop="9dp"/>
+
+        <ImageView
+            android:id="@+id/ivDelete"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="right"
+            android:src="@drawable/ic_remove_black"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background_text_design"
+        android:layout_marginBottom="5dp"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:gravity="left">
+
+                <TextView
+                    android:id="@+id/tvPhoneLvR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginLeft="12dp"
+                    android:text="טלפון"
+                    android:fontFamily="@font/abraham"
+                    android:textColor="@color/black"
+                    android:textSize="20dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="180dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:gravity="right">
+
+                <TextView
+                    android:id="@+id/tvDateLvR"
+                    android:layout_width="70dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginRight="1dp"
+                    android:fontFamily="@font/abraham"
+                    android:text="תאריך"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvTextLvR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="20dp"
+            android:text="מלל הבקשה"
+            android:fontFamily="@font/abraham"
+            android:textColor="@color/black"
+            android:textSize="35dp"/>
+
+        <TextView
+            android:id="@+id/tvAddressLvR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/abraham"
+            android:text="כתובת"
+            android:textColor="@color/black"
+            android:textSize="20dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="7dp">
+
+        <TextView
+            android:id="@+id/tvUpdateLvR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/abraham"
+            android:text="עדכון"
+            android:textColor="@color/white"
+            android:textSize="17dp" />
+
+    </LinearLayout>
+
+</LinearLayout>
