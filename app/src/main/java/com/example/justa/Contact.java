@@ -160,9 +160,9 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
 
     public boolean check(String phone)
     {
-        if(phone.length() < 10 && phone.length() > 10)
+        if(phone.length() < 10 || phone.length() > 10)
         {
-            Toast.makeText(Contact.this, "Wrong Phone Number", Toast.LENGTH_LONG).show();
+            Toast.makeText(Contact.this, "WRONG PHONE NUMBER", Toast.LENGTH_LONG).show();
             etPhoneNumber.setText("");
 
             return false;

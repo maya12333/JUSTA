@@ -1,11 +1,8 @@
 package com.example.justa;
 
-import static com.example.justa.R.id.rbNeed;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,6 +14,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,7 +79,6 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
         tvToLogin.setOnClickListener(this);
         type = "needy";
-
     }
 
 
@@ -125,6 +123,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
                     Toast.makeText(Register.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             });
+
+            dialog.dismiss();
         }
 
         if(view == btRNo)
@@ -141,7 +141,7 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
             type = "needy";
         }
 
-        else {
+        else if(checkedButtonId == rbVolunteer.getId()){
             type = "volunteer";
         }
     }
@@ -165,7 +165,17 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         String username = etUsernameR.getText().toString();
         String pass = etPasswordR.getText().toString();
         String phone = etPhoneR.getText().toString();
-        
+
+        if(!check(username, phone, pass))
+        {
+            return;
+        }
+
+        if(existPhone(phone))
+        {
+            return;
+        }
+
         tvNameR.setText(username);
         tvPasswordR.setText(pass);
         tvPhoneR.setText(phone);
@@ -181,5 +191,96 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         }
 
         dialog.show();
+    }
+
+    public boolean existPhone(String phone)
+    {
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
+
+       databaseReference.addValueEventListener(new ValueEventListener() {
+           @Override
+           public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+               for(DataSnapshot currentSnap: snapshot.getChildren())
+               {
+                   if(currentSnap.getValue(User.class).getPhone() == phone)
+                   {
+                       Toast.makeText(Register.this, "This Phone Already Exist", Toast.LENGTH_LONG).show();
+                   }
+               }
+           }
+
+           @Override
+           public void onCancelled(@NonNull DatabaseError error) {
+
+           }
+       });
+
+       databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+           @Override
+           public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+               Toast.makeText(Register.this, "This Phone Number Already Exists", Toast.LENGTH_LONG).show();
+
+               dialog.dismiss();
+
+               etPhoneR.setText("");
+           }
+       });
+
+        return true;
+    }
+
+    public boolean check(String name, String phone, String password)
+    {
+        if(name.length() == 0)
+        {
+            Toast.makeText(Register.this, "ENTER NAME", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(password.length() == 0)
+        {
+            Toast.makeText(Register.this, "ENTER PASSWORD", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(phone.length() == 0)
+        {
+            Toast.makeText(Register.this, "ENTER PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(name.length() < 2 || name.length() > 12)
+        {
+            Toast.makeText(Register.this, "USERNAME BETWEEN 2 AND 15 LETTERS", Toast.LENGTH_LONG).show();
+
+            etUsernameR.setText("");
+
+            return false;
+        }
+
+        if(password.length() < 4 || password.length() > 10)
+        {
+            Toast.makeText(Register.this, "PASSWORD BETWEEN 4 AND 10 NUMBERS", Toast.LENGTH_LONG).show();
+
+            etPasswordR.setText("");
+
+            return false;
+        }
+
+        if(phone.length() < 10 || phone.length() > 10)
+        {
+            Toast.makeText(Register.this, "WRONG PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            etPhoneR.setText("");
+
+            return false;
+        }
+
+        return true;
     }
 }

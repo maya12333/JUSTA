@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.JUSTA" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.JUSTA" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
 
@@ -17,4 +17,13 @@
     </style>
 
     <style name="Theme.JUSTA" parent="Base.Theme.JUSTA" />
+
+    <style name="Theme.JUSTA.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.JUSTA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.JUSTA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

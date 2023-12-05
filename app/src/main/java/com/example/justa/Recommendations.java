@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +15,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -51,10 +55,18 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
 
     private DatabaseReference databaseReference;
 
+    private SharedPreferences sp;
+
+    private ProgressBar pb;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
+
+        sp = getSharedPreferences("Login", MODE_PRIVATE);
+
+        pb=findViewById(R.id.pb);
 
         ivAddRecommend = findViewById(R.id.ivAddRecommend);
         ivBackRec = findViewById(R.id.ivBackRec);
@@ -64,10 +76,45 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        arrayList = new ArrayList<>();
+        getRecommendationsFromDB();
 
         ivAddRecommend.setOnClickListener(this);
         ivBackRec.setOnClickListener(this);
+    }
+
+    public void getRecommendationsFromDB()
+    {
+        arrayList = new ArrayList<>();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Recommendation").child(sp.getString("phone", null));
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot currentSnap: snapshot.getChildren())
+                {
+                    arrayList.add(currentSnap.getValue(Recommendation.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                pb.setVisibility(View.INVISIBLE);
+                adapterRecommend = new AdapterRecommend(Recommendations.this, 0, 0 , arrayList);
+
+                lvAddRecommend.setAdapter(adapterRecommend);
+
+            }
+        });
+
+
     }
 
     @Override
@@ -124,13 +171,13 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
 
         databaseReference = firebaseDatabase.getReference("Recommendation");
 
-        recommendation = new Recommendation(name, phone, text);
+        recommendation = new Recommendation(name, phone, text,sp.getString("phone", null));
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
+            public void onDataChange(@NonNull DataSnapshot snapshot){
 
-                databaseReference.child(phone).setValue(recommendation);
+                databaseReference.child(sp.getString("phone", null)).push().setValue(recommendation);
             }
 
             @Override

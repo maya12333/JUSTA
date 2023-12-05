@@ -66,6 +66,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             String phone = etPhoneL.getText().toString();
             String password = etPasswordL.getText().toString();
 
+
             databaseReference=firebaseDatabase.getReference();
 
             databaseReference.child("Users").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -74,7 +75,7 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
                     if(snapshot.hasChild(phone))
                     {
-                        current=snapshot.child(phone).getValue(User.class);
+                        current = snapshot.child(phone).getValue(User.class);
 
                         String passD = snapshot.child(phone).child("password").getValue(String.class);
                         String typeD = snapshot.child(phone).child("type").getValue(String.class);
@@ -127,5 +128,42 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
 
             finish();
         }
+    }
+
+    public boolean check(String phone, String password)
+    {
+        if(password.length() == 0)
+        {
+            Toast.makeText(Login.this, "ENTER PASSWORD", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(phone.length() == 0)
+        {
+            Toast.makeText(Login.this, "ENTER PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(password.length() < 4 || password.length() > 10)
+        {
+            Toast.makeText(Login.this, "PASSWORD BETWEEN 4 AND 10 NUMBERS", Toast.LENGTH_LONG).show();
+
+            etPasswordL.setText("");
+
+            return false;
+        }
+
+        if(phone.length() < 10 || phone.length() > 10)
+        {
+            Toast.makeText(Login.this, "WRONG PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            etPhoneL.setText("");
+
+            return false;
+        }
+
+        return true;
     }
 }

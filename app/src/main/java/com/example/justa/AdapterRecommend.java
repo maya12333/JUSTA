@@ -24,8 +24,6 @@ public class AdapterRecommend extends ArrayAdapter<Recommendation> {
     private Context context;
     private ArrayList<Recommendation> arrayList;
 
-    private Dialog dialog;
-
     public AdapterRecommend(@NonNull Context context, int resource, int textViewResourceId, @NonNull ArrayList<Recommendation> objects) {
         super(context, resource, textViewResourceId, objects);
 
@@ -47,10 +45,10 @@ public class AdapterRecommend extends ArrayAdapter<Recommendation> {
 
         Recommendation r = arrayList.get(position);
 
+
         tvNameV.setText(r.getNameV());
         tvPhoneV.setText(r.getPhoneV());
         tvTextV.setText(r.getTextV());
-
 
         return view;
     }

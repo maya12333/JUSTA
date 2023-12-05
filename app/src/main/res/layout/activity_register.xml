@@ -112,7 +112,7 @@
                 android:text="צריך ג׳סטה"
                 android:fontFamily="@font/alefbold"
                 android:textSize="16dp"
-                />
+                android:checked="true"/>
 
             <RadioButton
                 android:id="@+id/rbVolunteer"
