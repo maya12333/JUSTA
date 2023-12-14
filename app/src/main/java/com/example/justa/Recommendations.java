@@ -82,41 +82,6 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         ivBackRec.setOnClickListener(this);
     }
 
-    public void getRecommendationsFromDB()
-    {
-        arrayList = new ArrayList<>();
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Recommendation").child(sp.getString("phone", null));
-
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for(DataSnapshot currentSnap: snapshot.getChildren())
-                {
-                    arrayList.add(currentSnap.getValue(Recommendation.class));
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
-        databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                pb.setVisibility(View.INVISIBLE);
-                adapterRecommend = new AdapterRecommend(Recommendations.this, 0, 0 , arrayList);
-
-                lvAddRecommend.setAdapter(adapterRecommend);
-
-            }
-        });
-
-
-    }
-
     @Override
     public void onClick(View view) {
 
@@ -166,18 +131,18 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         etTextReco = dialog.findViewById(R.id.etTextReco);
 
         String name = etNameV.getText().toString();
-        String phone = etPhoneV.getText().toString();
+        String phoneV = etPhoneV.getText().toString();
         String text = etTextReco.getText().toString();
 
         databaseReference = firebaseDatabase.getReference("Recommendation");
 
-        recommendation = new Recommendation(name, phone, text,sp.getString("phone", null));
+        recommendation = new Recommendation(name, phoneV, text, sp.getString("phone", null));
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot){
 
-                databaseReference.child(sp.getString("phone", null)).push().setValue(recommendation);
+                databaseReference.child(sp.getString("phone", null)).push().child(phoneV).setValue(recommendation);
             }
 
             @Override
@@ -193,5 +158,38 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         lvAddRecommend.setAdapter(adapterRecommend);
 
         dialog.dismiss();
+    }
+
+    public void getRecommendationsFromDB()
+    {
+        arrayList = new ArrayList<>();
+
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Recommendation").child(sp.getString("phone", null));
+
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                for(DataSnapshot currentSnap: snapshot.getChildren())
+                {
+                    arrayList.add(currentSnap.getValue(Recommendation.class));
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                pb.setVisibility(View.INVISIBLE);
+                adapterRecommend = new AdapterRecommend(Recommendations.this, 0, 0 , arrayList);
+
+                lvAddRecommend.setAdapter(adapterRecommend);
+
+            }
+        });
     }
 }

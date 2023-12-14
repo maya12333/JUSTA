@@ -48,7 +48,7 @@ public class Open_volunteer extends AppCompatActivity implements View.OnClickLis
 
         if(view == btViewRequests)
         {
-            Intent go = new Intent(Open_volunteer.this, View_requests.class);
+            Intent go = new Intent(Open_volunteer.this, View_Requests.class);
 
             startActivity(go);
 

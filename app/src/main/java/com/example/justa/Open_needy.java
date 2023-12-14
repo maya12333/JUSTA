@@ -1,7 +1,11 @@
 package com.example.justa;
 
+import androidx.annotation.NavigationRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.navigation.Navigation;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -14,6 +18,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
+
 public class Open_needy extends AppCompatActivity implements View.OnClickListener {
 
     private TextView tvUsernameN;
@@ -23,6 +29,7 @@ public class Open_needy extends AppCompatActivity implements View.OnClickListene
 
     private SharedPreferences sp;
 
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,30 +49,6 @@ public class Open_needy extends AppCompatActivity implements View.OnClickListene
         tvLogoutN.setOnClickListener(this);
         btRequests.setOnClickListener(this);
         btRecommendations.setOnClickListener(this);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-
-        getMenuInflater().inflate(R.menu.menu, menu);
-        
-        return super.onCreateOptionsMenu(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
-        if(item.getItemId() == R.id.menu_police)
-        {
-            Intent callIntent = new Intent(Intent.ACTION_CALL);
-            callIntent.setData(Uri.parse("tel:"+100));//change the number.
-            startActivity(callIntent);
-
-        }
-
-
-
-        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -98,4 +81,5 @@ public class Open_needy extends AppCompatActivity implements View.OnClickListene
             finish();
         }
     }
+
 }

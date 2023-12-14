@@ -66,6 +66,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
             String phone = etPhoneL.getText().toString();
             String password = etPasswordL.getText().toString();
 
+            if(!check(phone, password))
+            {
+                return;
+            }
 
             databaseReference=firebaseDatabase.getReference();
 
@@ -109,6 +113,10 @@ public class Login extends AppCompatActivity implements View.OnClickListener {
                         else {
                             Toast.makeText(Login.this, "Wrong Password", Toast.LENGTH_LONG).show();
                         }
+                    }
+
+                    else{
+                        Toast.makeText(Login.this, "This Phone Number Doesn't Exsit", Toast.LENGTH_LONG).show();
                     }
                 }
 

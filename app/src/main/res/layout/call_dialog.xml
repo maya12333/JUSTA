@@ -71,7 +71,7 @@
         android:layout_marginBottom="15dp">
 
         <Button
-            android:id="@+id/btCallYes"
+            android:id="@+id/btCallNo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp"
@@ -82,7 +82,7 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/btCallNo"
+            android:id="@+id/btCallYes"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="כן"

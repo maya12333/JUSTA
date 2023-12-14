@@ -13,19 +13,15 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-public class Requests extends AppCompatActivity implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
+public class Requests extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView ivBackReq;
     private ImageView ivAddRequest;
     private ImageView ivExitReq;
-    private ImageView ivDelete;
 
     private ListView lvAddRequest;
 
     private Dialog dialog;
-
-    private CheckBox cbConfirm;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,28 +66,9 @@ public class Requests extends AppCompatActivity implements View.OnClickListener,
         dialog.setContentView(R.layout.add_request_dialog);
 
         ivExitReq = dialog.findViewById(R.id.ivExitReq);
-        cbConfirm = dialog.findViewById(R.id.cbConfirm);
-        ivDelete = dialog.findViewById(R.id.ivDelete);
-        ivDelete.setVisibility(View.INVISIBLE);
 
-        ivExitReq.setOnClickListener(this);
-        cbConfirm.setOnCheckedChangeListener(this);
 
         dialog.show();
 
-    }
-
-    @Override
-    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-
-        if(b)
-        {
-            ivDelete.setVisibility(View.VISIBLE);
-        }
-
-        else
-        {
-            ivDelete.setVisibility(View.INVISIBLE);
-        }
     }
 }

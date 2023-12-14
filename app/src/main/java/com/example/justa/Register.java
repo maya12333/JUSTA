@@ -23,7 +23,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-public class Register extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener {
+public class Register extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener, View.OnClickListener{
 
     private TextView tvToLogin;
     private TextView tvNameR;
@@ -52,6 +52,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
     private Dialog dialog;
 
+    private boolean b;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,9 +80,9 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         rgRegister.setOnCheckedChangeListener(this);
 
         tvToLogin.setOnClickListener(this);
+
         type = "needy";
     }
-
 
     @Override
     public void onClick(View view) {
@@ -171,7 +173,7 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
             return;
         }
 
-        if(existPhone(phone))
+        if(!existPhone(phone))
         {
             return;
         }
@@ -195,9 +197,11 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
     public boolean existPhone(String phone)
     {
+        b = true;
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
 
-       databaseReference.addValueEventListener(new ValueEventListener() {
+        databaseReference.addValueEventListener(new ValueEventListener() {
            @Override
            public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -206,6 +210,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
                    if(currentSnap.getValue(User.class).getPhone() == phone)
                    {
                        Toast.makeText(Register.this, "This Phone Already Exist", Toast.LENGTH_LONG).show();
+
+                       b = false;
                    }
                }
            }
@@ -224,11 +230,13 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
                dialog.dismiss();
 
+               b = false;
+
                etPhoneR.setText("");
            }
        });
 
-        return true;
+       return b;
     }
 
     public boolean check(String name, String phone, String password)

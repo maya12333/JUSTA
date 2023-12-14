@@ -1,5 +1,7 @@
 package com.example.justa;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -7,17 +9,13 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-public class View_requests extends AppCompatActivity implements View.OnClickListener {
+public class View_Requests extends AppCompatActivity implements View.OnClickListener {
 
     private Button btPlace;
 
     private ListView lvViewR;
 
     private ImageView ivBackVR;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +29,7 @@ public class View_requests extends AppCompatActivity implements View.OnClickList
         ivBackVR = findViewById(R.id.ivBackVR);
 
         btPlace.setOnClickListener(this);
-
+        ivBackVR.setOnClickListener(this);
     }
 
     @Override
@@ -44,7 +42,7 @@ public class View_requests extends AppCompatActivity implements View.OnClickList
 
         if(view == ivBackVR)
         {
-            Intent go = new Intent(View_requests.this, Open_volunteer.class);
+            Intent go = new Intent(View_Requests.this, Open_volunteer.class);
 
             startActivity(go);
 

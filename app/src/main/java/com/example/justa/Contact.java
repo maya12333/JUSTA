@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -67,7 +68,11 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
 
         if(view == btCallYes)
         {
+            String phone = etPhoneNumber.getText().toString();
 
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:"+phone));//change the number
+            startActivity(callIntent);
         }
 
         if(view == btCallNo)
@@ -77,7 +82,10 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
 
         if(view == btSendYes)
         {
+            String phone = etPhoneNumber.getText().toString();
 
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW,Uri.fromParts("sms",phone,null));
+            startActivity(sendIntent);
         }
 
         if(view == btSendNo)
@@ -160,6 +168,13 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
 
     public boolean check(String phone)
     {
+        if(phone.length() == 0)
+        {
+            Toast.makeText(Contact.this, "ENTER PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
         if(phone.length() < 10 || phone.length() > 10)
         {
             Toast.makeText(Contact.this, "WRONG PHONE NUMBER", Toast.LENGTH_LONG).show();
