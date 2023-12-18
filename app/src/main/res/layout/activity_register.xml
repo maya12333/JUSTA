@@ -128,12 +128,14 @@
 
         <Button
             android:id="@+id/btRegisterIn"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="70dp"
             android:layout_marginTop="20dp"
             android:text="הרשמה"
             android:fontFamily="@font/gan"
-            android:textSize="20dp"/>
+            android:textSize="20dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/tvToLogin"

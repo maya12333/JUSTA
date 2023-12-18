@@ -56,10 +56,12 @@
             android:id="@+id/btRequests"
             android:layout_width="180dp"
             android:layout_height="120dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="50dp"
             android:text="בקשות"
             android:textSize="35dp"
-            android:fontFamily="@font/gan"/>
+            android:fontFamily="@font/gan"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"/>
 
         <Button
             android:id="@+id/btRecommendations"
@@ -68,7 +70,9 @@
             android:layout_marginTop="20dp"
             android:text="המלצות"
             android:textSize="34dp"
-            android:fontFamily="@font/gan" />
+            android:fontFamily="@font/gan"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"/>
 
         <TextView
             android:id="@+id/tvLogoutN"

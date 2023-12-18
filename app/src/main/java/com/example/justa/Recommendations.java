@@ -42,7 +42,6 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
     private EditText etTextReco;
 
     private Button btSendAReco;
-
     private Dialog dialog;
 
     private ArrayList<Recommendation> arrayList;
@@ -56,17 +55,12 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference databaseReference;
 
     private SharedPreferences sp;
-
-    private ProgressBar pb;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recommendations);
 
         sp = getSharedPreferences("Login", MODE_PRIVATE);
-
-        pb=findViewById(R.id.pb);
 
         ivAddRecommend = findViewById(R.id.ivAddRecommend);
         ivBackRec = findViewById(R.id.ivBackRec);
@@ -184,7 +178,6 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                pb.setVisibility(View.INVISIBLE);
                 adapterRecommend = new AdapterRecommend(Recommendations.this, 0, 0 , arrayList);
 
                 lvAddRecommend.setAdapter(adapterRecommend);

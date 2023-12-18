@@ -63,12 +63,14 @@
 
         <Button
             android:id="@+id/btPlace"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="60dp"
             android:layout_marginTop="20dp"
             android:text="סינון לפי מיקום"
             android:fontFamily="@font/gan"
-            android:textSize="15dp"/>
+            android:textSize="15dp"
+            android:background="@drawable/custom_button"
+            android:textColor="@color/white"/>
 
         <ListView
             android:id="@+id/lvViewR"

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -52,7 +53,9 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
     private Dialog dialog;
 
-    private boolean b;
+    private SharedPreferences mPref;
+
+    private Intent go;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +74,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         etUsernameR = findViewById(R.id.etUsernameR);
         etPasswordR = findViewById(R.id.etPasswordR);
         etPhoneR = findViewById(R.id.etPhoneR);
+
+        mPref = getSharedPreferences("Login",MODE_PRIVATE);
 
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
@@ -106,6 +111,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
             String pass = etPasswordR.getText().toString();
             String phone = etPhoneR.getText().toString();
 
+            boolean[] flag = {false};
+
             databaseReference = firebaseDatabase.getReference("Users");
 
             User user = new User(username, phone,pass,type);
@@ -114,15 +121,67 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                    databaseReference.child(phone).setValue(user);
+                    for(DataSnapshot currentSnap: snapshot.getChildren())
+                    {
+                        User u = currentSnap.getValue(User.class);
 
-                    Toast.makeText(Register.this, "Added!", Toast.LENGTH_SHORT).show();
+                        assert u != null;
+
+                        System.out.println(u.toString());
+
+                        if(phone.equals(u.getPhone()))
+                        {
+                            flag[0] = true;
+                        }
+                    }
+
                 }
 
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
 
                     Toast.makeText(Register.this, "Error", Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+
+                    if(!flag[0])
+                    {
+                        databaseReference.child(phone).setValue(user);
+
+                        Toast.makeText(Register.this, "Added!", Toast.LENGTH_SHORT).show();
+
+                        if(type.equals("volunteer"))
+                        {
+                            go = new Intent(Register.this, Open_volunteer.class);
+                        }
+
+                        else
+                        {
+                            go = new Intent(Register.this, Open_needy.class);
+                        }
+
+                        SharedPreferences.Editor perfEditor = mPref.edit();
+                        perfEditor.putString("phone",user.getPhone());
+                        perfEditor.putString("name",user.getUsername());
+                        perfEditor.putString("password",user.getPassword());
+                        perfEditor.commit();
+
+                        go.putExtra("user", user);
+                        startActivity(go);
+
+                        finish();
+                    }
+
+                    else {
+
+                        Toast.makeText(Register.this, "THIS PHONE NUMBER ALRADY EXIST!", Toast.LENGTH_SHORT).show();
+
+                        etPhoneR.setText("");
+                    }
                 }
             });
 
@@ -173,11 +232,6 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
             return;
         }
 
-        if(!existPhone(phone))
-        {
-            return;
-        }
-
         tvNameR.setText(username);
         tvPasswordR.setText(pass);
         tvPhoneR.setText(phone);
@@ -195,49 +249,6 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         dialog.show();
     }
 
-    public boolean existPhone(String phone)
-    {
-        b = true;
-
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Users");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-           @Override
-           public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-               for(DataSnapshot currentSnap: snapshot.getChildren())
-               {
-                   if(currentSnap.getValue(User.class).getPhone() == phone)
-                   {
-                       Toast.makeText(Register.this, "This Phone Already Exist", Toast.LENGTH_LONG).show();
-
-                       b = false;
-                   }
-               }
-           }
-
-           @Override
-           public void onCancelled(@NonNull DatabaseError error) {
-
-           }
-       });
-
-       databaseReference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-           @Override
-           public void onComplete(@NonNull Task<DataSnapshot> task) {
-
-               Toast.makeText(Register.this, "This Phone Number Already Exists", Toast.LENGTH_LONG).show();
-
-               dialog.dismiss();
-
-               b = false;
-
-               etPhoneR.setText("");
-           }
-       });
-
-       return b;
-    }
 
     public boolean check(String name, String phone, String password)
     {
