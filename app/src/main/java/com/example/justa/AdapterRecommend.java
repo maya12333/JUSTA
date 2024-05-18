@@ -1,23 +1,17 @@
 package com.example.justa;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.w3c.dom.Text;
-
 import java.util.ArrayList;
-import java.util.List;
 
 public class AdapterRecommend extends ArrayAdapter<Recommendation> {
 
@@ -44,7 +38,6 @@ public class AdapterRecommend extends ArrayAdapter<Recommendation> {
         TextView tvTextV = view.findViewById(R.id.tvTextV);
 
         Recommendation r = arrayList.get(position);
-
 
         tvNameV.setText(r.getNameV());
         tvPhoneV.setText(r.getPhoneV());

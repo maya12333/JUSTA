@@ -1,18 +1,21 @@
 package com.example.justa;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Contact extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,7 +36,6 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
     private TextView tvPhoneSend;
 
     private Dialog dialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,7 +73,7 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
             String phone = etPhoneNumber.getText().toString();
 
             Intent callIntent = new Intent(Intent.ACTION_DIAL);
-            callIntent.setData(Uri.parse("tel:"+phone));//change the number
+            callIntent.setData(Uri.parse("tel:"+phone));
             startActivity(callIntent);
         }
 
@@ -84,7 +86,7 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
         {
             String phone = etPhoneNumber.getText().toString();
 
-            Intent sendIntent = new Intent(Intent.ACTION_VIEW,Uri.fromParts("sms",phone,null));
+            Intent sendIntent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms",phone,null));
             startActivity(sendIntent);
         }
 
@@ -184,5 +186,50 @@ public class Contact extends AppCompatActivity implements View.OnClickListener {
         }
 
         return true;
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == R.id.menu_police)
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + 100));
+            startActivity(callIntent);
+        }
+
+        if(item.getItemId() == R.id.menu_mada)
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + 101));
+            startActivity(callIntent);
+        }
+
+        if(item.getItemId() == R.id.menu_fire)
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + 102));
+            startActivity(callIntent);
+        }
+
+        if(item.getItemId() == R.id.logout)
+        {
+            Intent go = new Intent(Contact.this, MainActivity.class);
+
+            startActivity(go);
+
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

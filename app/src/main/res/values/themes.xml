@@ -9,11 +9,25 @@
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/lightBlue</item>
-        <item name="colorSecondaryVariant">@color/teal_700</item>
+        <item name="colorSecondaryVariant">@color/lightBlue</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+
+        <item name="android:itemTextAppearance">@style/ChangeTextStyle</item>
+        <item name="android:itemBackground">@color/clearLightBlue</item>
+    </style>
+
+    <style name="roundedCornersImageView" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50dp</item>
+    </style>
+
+    <style name="MyDatePickerStyle" parent="Theme.AppCompat.Light.Dialog">
+        <item name="colorAccent">@color/lightBlue</item>
+        <item name="colorControlActivated">@color/lightBlue</item>
+        <item name="android:textColor">@color/lightBlue</item>
     </style>
 
     <style name="Theme.JUSTA" parent="Base.Theme.JUSTA" />
@@ -26,4 +40,11 @@
     <style name="Theme.JUSTA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.JUSTA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+    
+    <style name="ChangeTextStyle" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+        
+        <item name="fontFamily">@font/abraham</item>
+        <item name="android:textSize">20dp</item>
+
+    </style>
 </resources>

@@ -61,22 +61,27 @@
             android:textColor="@color/black"
             android:fontFamily="@font/abraham"/>
 
-        <Button
-            android:id="@+id/btPlace"
-            android:layout_width="100dp"
-            android:layout_height="60dp"
-            android:layout_marginTop="20dp"
-            android:text="סינון לפי מיקום"
-            android:fontFamily="@font/gan"
-            android:textSize="15dp"
-            android:background="@drawable/custom_button"
-            android:textColor="@color/white"/>
 
-        <ListView
-            android:id="@+id/lvViewR"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp" />
+            android:gravity="center">
+
+            <CheckBox
+                android:id="@+id/cbSort"
+                android:layout_width="wrap_content"
+                android:layout_height="60dp"
+                android:buttonTint="@color/lightBlue"
+                android:text="סינון לפי התנדבויות שבוצעו"
+                android:fontFamily="@font/alefbold"
+                android:textSize="17dp"/>
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 

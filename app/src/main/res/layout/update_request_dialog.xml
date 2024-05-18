@@ -13,7 +13,7 @@
         android:gravity="right">
 
         <ImageButton
-            android:id="@+id/ivExitReq"
+            android:id="@+id/ivExitReqU"
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:src="@drawable/ic_close"
@@ -26,7 +26,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="הוסף בקשה"
+        android:text=" עדכון בקשה"
         android:textSize="34dp"
         android:textColor="@color/white"
         android:fontFamily="@font/abraham"/>
@@ -42,7 +42,7 @@
         android:layout_margin="12dp">
 
         <EditText
-            android:id="@+id/etTextReq"
+            android:id="@+id/etTextReqU"
             android:layout_width="200dp"
             android:layout_height="70dp"
             android:layout_marginTop="20dp"
@@ -53,7 +53,7 @@
             android:textColorHint="@color/black"/>
 
         <Button
-            android:id="@+id/btDate"
+            android:id="@+id/btDateU"
             android:layout_width="150dp"
             android:layout_height="60dp"
             android:backgroundTint="@color/clearLightBlue"
@@ -63,14 +63,14 @@
             android:fontFamily="@font/alef"/>
 
         <ImageView
-            android:id="@+id/ivLocation"
+            android:id="@+id/ivLocationU"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginTop="10dp"
             android:src="@drawable/ic_location"/>
 
         <TextView
-            android:id="@+id/tvAddress"
+            android:id="@+id/tvAddressU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
@@ -79,24 +79,14 @@
             android:textColor="@color/black"
             android:fontFamily="@font/alef"/>
 
-<!--        <TextView-->
-<!--            android:id="@+id/tvLatiLong"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginBottom="12dp"-->
-<!--            android:text="קו אורך , קו רוחב"-->
-<!--            android:textSize="20dp"-->
-<!--            android:textColor="@color/black"-->
-<!--            android:fontFamily="@font/alef"/>-->
-
     </LinearLayout>
 
     <Button
-        android:id="@+id/btSendReq"
+        android:id="@+id/btUpdateReq"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="15dp"
-        android:text="שלח"
+        android:text="עדכן"
         android:textColor="@color/lightBlue"
         android:fontFamily="@font/gan"
         android:backgroundTint="@color/white"

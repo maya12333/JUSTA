@@ -1,8 +1,5 @@
 package com.example.justa;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -10,10 +7,14 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -45,6 +46,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
     private EditText etPasswordR;
     private EditText etPhoneR;
 
+    private ImageView ivBackReg;
+
     private FirebaseDatabase firebaseDatabase;
 
     private DatabaseReference databaseReference;
@@ -75,6 +78,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         etPasswordR = findViewById(R.id.etPasswordR);
         etPhoneR = findViewById(R.id.etPhoneR);
 
+        ivBackReg = findViewById(R.id.ivBackReg);
+
         mPref = getSharedPreferences("Login",MODE_PRIVATE);
 
         FirebaseApp.initializeApp(this);
@@ -85,6 +90,8 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         rgRegister.setOnCheckedChangeListener(this);
 
         tvToLogin.setOnClickListener(this);
+
+        ivBackReg.setOnClickListener(this);
 
         type = "needy";
     }
@@ -127,14 +134,11 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
 
                         assert u != null;
 
-                        System.out.println(u.toString());
-
                         if(phone.equals(u.getPhone()))
                         {
                             flag[0] = true;
                         }
                     }
-
                 }
 
                 @Override
@@ -168,6 +172,10 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
                         perfEditor.putString("phone",user.getPhone());
                         perfEditor.putString("name",user.getUsername());
                         perfEditor.putString("password",user.getPassword());
+                        perfEditor.putString("image", null);
+                        perfEditor.putString("type", user.getType());
+                        perfEditor.putInt("counter", 0);
+
                         perfEditor.commit();
 
                         go.putExtra("user", user);
@@ -191,6 +199,15 @@ public class Register extends AppCompatActivity implements RadioGroup.OnCheckedC
         if(view == btRNo)
         {
             dialog.dismiss();
+        }
+
+        if(view == ivBackReg)
+        {
+            Intent go = new Intent(Register.this, MainActivity.class);
+
+            startActivity(go);
+
+            finish();
         }
     }
 

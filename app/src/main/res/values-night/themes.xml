@@ -3,5 +3,17 @@
     <style name="Base.Theme.JUSTA" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+
+        <item name="android:itemTextAppearance">@style/ChangeTextStyle</item>
+
+    </style>
+
+    <style name="Theme.JUSTA.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.JUSTA.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="ChangeTextStyle" parent="@android:style/TextAppearance.Widget.IconMenu.Item">
+
+        <item name="fontFamily">@font/abraham</item>
     </style>
 </resources>

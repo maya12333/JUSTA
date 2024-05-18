@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:layout_marginTop="140dp">
+        android:layout_marginTop="100dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -55,11 +55,18 @@
             android:fontFamily="@font/abraham"
             android:textSize="50dp"/>
 
+        <ImageView
+            android:id="@+id/ivOpen"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:src="@drawable/logo"
+            android:layout_marginTop="20dp"/>
+
         <Button
             android:id="@+id/btRegister"
             android:layout_width="110dp"
             android:layout_height="70dp"
-            android:layout_marginTop="70dp"
+            android:layout_marginTop="30dp"
             android:text="הרשמה"
             android:fontFamily="@font/gan"
             android:textSize="20dp"

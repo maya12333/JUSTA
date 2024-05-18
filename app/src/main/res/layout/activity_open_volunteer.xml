@@ -37,9 +37,12 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivImage"
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
             android:layout_width="100dp"
             android:layout_height="100dp"
+            android:scaleType="centerCrop"
             android:src="@drawable/ic_person"/>
 
         <TextView
@@ -83,17 +86,6 @@
             android:fontFamily="@font/gan"
             android:background="@drawable/custom_button"
             android:textColor="@color/white"/>
-
-        <TextView
-            android:id="@+id/tvLogoutV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="התנתקות"
-            android:fontFamily="@font/gan"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
 
     </LinearLayout>
 

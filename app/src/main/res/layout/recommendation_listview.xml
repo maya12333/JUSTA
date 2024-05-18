@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="שם המתנדב"
-            android:fontFamily="@font/abraham"
+            android:fontFamily="@font/dela"
             android:textColor="@color/black"
             android:textSize="23dp"/>
 
@@ -42,9 +42,10 @@
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
             android:text="מלל ההמלצה"
-            android:fontFamily="@font/abraham"
+            android:fontFamily="@font/dela"
             android:textColor="@color/black"
-            android:textSize="35dp"/>
+            android:textSize="35dp"
+            android:gravity="center"/>
 
     </LinearLayout>
 

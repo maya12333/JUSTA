@@ -1,0 +1,487 @@
+@startuml
+class com.example.justa.Recommendation {
+- String nameV
+- String phoneV
+- String textV
+- String phoneN
++ <<Create>> Recommendation(String,String,String,String)
++ <<Create>> Recommendation()
++ String getNameV()
++ String getPhoneN()
++ void setPhoneN(String)
++ void setNameV(String)
++ String getPhoneV()
++ void setPhoneV(String)
++ String getTextV()
++ void setTextV(String)
+}
+
+
+class com.example.justa.AdapterRecommend {
+- Context context
+- ArrayList<Recommendation> arrayList
++ <<Create>> AdapterRecommend(Context,int,int,ArrayList<Recommendation>)
++ View getView(int,View,ViewGroup)
+}
+
+
+class com.example.justa.View_Requests {
+- Button btPlace
+- ImageView ivBackVR
+- CheckBox cbSort
+- ArrayList<Request> arrayList
+- AdapterRequest adapterRequest
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
+- SharedPreferences sp
+- RecyclerView recyclerView
+- MainAdapter mainAdapter
+- Adapter myAdapter
+- ArrayList<Request> list
+# void onCreate(Bundle)
++ void onClick(View)
++ boolean onCreateOptionsMenu(Menu)
+- void txtSearch(String)
++ void onCheckedChanged(CompoundButton,boolean)
+}
+
+
+class com.example.justa.Contact {
+- EditText etPhoneNumber
+- Button btSend
+- Button btCall
+- Button btCallYes
+- Button btCallNo
+- Button btSendYes
+- Button btSendNo
+- ImageView ivBackC
+- ImageView ivExitCall
+- ImageView ivExitSend
+- TextView tvPhoneCall
+- TextView tvPhoneSend
+- Dialog dialog
+# void onCreate(Bundle)
++ void onClick(View)
++ void openDialogCall()
++ void openDialogSend()
++ boolean check(String)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+}
+
+
+class com.example.justa.Model.MainPojo {
+~ String status
+~ ArrayList<ListClass> prediction
++ String getStatus()
++ void setStatus(String)
++ ArrayList<ListClass> getPrediction()
++ void setPrediction(ArrayList<ListClass>)
+}
+
+
+interface com.example.justa.ApiInterface {
+~ Call<MainPojo> getPlace(String,String)
+}
+
+class com.example.justa.Open_volunteer {
+- TextView tvUsernameV
+- Button btViewRequests
+- Button btProfile
+- Button btContact
+- SharedPreferences sp
+- int ONE_MEGABYTE
+- ImageView ivProfile
+# void onCreate(Bundle)
++ void onClick(View)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
++ void uploadImage()
+}
+
+
+class com.example.justa.Menu_Activity {
+- DrawerLayout drawerLayout
+- Toolbar toolbar
+- NavigationView navigationView
+# void onCreate(Bundle)
++ boolean onNavigationItemSelected(MenuItem)
++ void onBackPressed()
+}
+
+
+class com.example.justa.Register {
+- TextView tvToLogin
+- TextView tvNameR
+- TextView tvPasswordR
+- TextView tvPhoneR
+- TextView tvTypeR
+- Button btRegisterIn
+- Button btRNo
+- Button btRYes
+- RadioGroup rgRegister
+- RadioButton rbVolunteer
+- RadioButton rbNeed
+- EditText etUsernameR
+- EditText etPasswordR
+- EditText etPhoneR
+- ImageView ivBackReg
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
+- String type
+- Dialog dialog
+- SharedPreferences mPref
+- Intent go
+# void onCreate(Bundle)
++ void onClick(View)
++ void onCheckedChanged(RadioGroup,int)
++ void openDialog()
++ boolean check(String,String,String)
+}
+
+
+class com.example.justa.User {
+- String username
+- String phone
+- String password
+- String type
+- String uri
+- int counter
++ <<Create>> User(String,String,String,String)
++ <<Create>> User()
++ String getUri()
++ void setUri(String)
++ String getPhone()
++ void setPhone(String)
++ String getPassword()
++ void setPassword(String)
++ String getType()
++ void setType(String)
++ String getUsername()
++ int getCounter()
++ void setCounter(int)
++ void setUsername(String)
++ String toString()
+}
+
+
+class com.example.justa.AdapterRequest {
+- Context context
+- ArrayList<Request> arrayList
+- SharedPreferences sp
+- int counter
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
++ {static} Dialog dialog
+- ImageView ivExitReqU
+- ImageView ivLocationU
+- EditText etPhoneNU
+- EditText etTextReqU
+- Button btUpdateReq
+- Button btDateU
+- TextView tvAddressU
+~ Request r
+~ Request request
+- {static} int ADDRESS_REQ_CODE
++ <<Create>> AdapterRequest(Context,int,int,ArrayList<Request>)
++ View getView(int,View,ViewGroup)
++ void openUpdateDialog()
++ void onClick(View)
++ void retrieveData()
+}
+
+
+class com.example.justa.SearchPlaces {
+~ EditText etSearch
+~ RecyclerView rvS
+~ RelativeLayout relativeLayout
+~ ApiInterface apiInterface
+# void onCreate(Bundle)
++ void fifi(String)
+}
+
+
+class com.example.justa.Open_needy {
+- TextView tvUsernameN
+- Button btRequests
+- Button btRecommendations
+- SharedPreferences sp
+# void onCreate(Bundle)
++ void onClick(View)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+}
+
+
+class com.example.justa.MyService {
+- MediaPlayer player
++ IBinder onBind(Intent)
++ int onStartCommand(Intent,int,int)
++ void onDestroy()
+}
+
+
+class com.example.justa.Profile {
+- TextView tvUsernameP
+- TextView tvPhone
+- TextView tvCounterV
+- TextView tvUpdateP
+- ImageView ivStar1
+- ImageView ivStar2
+- ImageView ivStar3
+- ImageView ivStar4
+- ImageView ivStar5
+- ImageView ivBackP
+- ImageView ivProfile
+- ListView lvRecommendations
+- SharedPreferences sp
+- ArrayList<Recommendation> arrayList
+- AdapterRecommend adapterRecommend
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
+- int counterS
+- int GALLERY_REQ_CODE
+- int ONE_MEGABYTE
+# void onCreate(Bundle)
++ void onClick(View)
++ void changeStars()
++ void getMyRecommendationsFromDB()
+# void onActivityResult(int,int,Intent)
++ void uploadImage()
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+}
+
+
+class com.example.justa.Adapter {
+~ {static} Context context
+~ ArrayList<Request> list
+~ {static} int counter
+~ ImageView ivExitD
++ <<Create>> Adapter(Context,ArrayList<Request>)
++ myViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(myViewHolder,int)
++ int getItemCount()
++ void openDialog1()
++ void openDialogSend()
+}
+
+
+class com.example.justa.Adapter$myViewHolder {
+~ TextView text
+~ TextView date
+~ TextView address
+~ TextView phone
+~ TextView update
+~ CheckBox checkBox
+~ ImageView iv
+~ SharedPreferences sp
+~ DatabaseReference databaseReference
++ <<Create>> myViewHolder(View)
+}
+
+
+class com.example.justa.Recommendations {
+- ImageView ivAddRecommend
+- ImageView ivBackRec
+- ImageView ivExitReco
+- ListView lvAddRecommend
+- EditText etNameV
+- EditText etPhoneV
+- EditText etTextReco
+- Button btSendAReco
+- Dialog dialog
+- ArrayList<Recommendation> arrayList
+- AdapterRecommend adapterRecommend
+- Recommendation recommendation
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
+- SharedPreferences sp
+# void onCreate(Bundle)
++ void onClick(View)
++ void openDialog()
++ void addRecommend()
++ void getMyRecommendationsFromDB()
++ boolean check(String,String,String)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+}
+
+
+class com.example.justa.MainAdapter {
++ <<Create>> MainAdapter(FirebaseRecyclerOptions<Request>)
+# void onBindViewHolder(myViewHolder,int,Request)
++ myViewHolder onCreateViewHolder(ViewGroup,int)
+}
+
+class com.example.justa.MainAdapter$myViewHolder {
+~ TextView text
+~ TextView date
+~ TextView address
+~ TextView phone
+~ CheckBox checkBox
+~ int counter
++ <<Create>> myViewHolder(View)
+}
+
+
+class com.example.justa.RecyclerviewAdapter {
+~ List<Address> list
+- OnClickListener onClickListener
++ <<Create>> RecyclerviewAdapter(List<Address>)
++ ViewHolder onCreateViewHolder(ViewGroup,int)
++ void onBindViewHolder(ViewHolder,int)
++ int getItemCount()
++ void setOnClickListener(OnClickListener)
+}
+
+
+interface com.example.justa.RecyclerviewAdapter$OnClickListener {
+~ void OnClick(int,Address)
+}
+
+class com.example.justa.RecyclerviewAdapter$ViewHolder {
+~ TextView textView
++ <<Create>> ViewHolder(View)
+}
+
+
+class com.example.justa.Requests {
+- {static} int ADDRESS_REQ_CODE_UPDATE
+- Location location
+- ImageView ivBackReq
+- ImageView ivAddRequest
+- ImageView ivExitReq
+- ImageView ivLocation
+- ListView lvAddRequest
+- Dialog dialog
+- EditText etTextReq
+- Button btDate
+- Button btSendReq
+- TextView tvAddress
+- String date
+- String address
+- ArrayList<Request> arrayList
+- AdapterRequest adapterRequest
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
+- FusedLocationProviderClient fusedLocationProviderClient
+- {static} int REQUEST_CODE
+- {static} int ADDRESS_REQ_CODE
+- SharedPreferences sp
+# void onCreate(Bundle)
++ void onClick(View)
++ void openDialog()
++ void addRequest()
++ void getMyRequestsFromDB()
++ boolean check(String)
++ boolean onCreateOptionsMenu(Menu)
++ boolean onOptionsItemSelected(MenuItem)
+# void onActivityResult(int,int,Intent)
+}
+
+
+class com.example.justa.Model.ListClass {
+- String description
++ String getDescription()
++ void setDescription(String)
+}
+
+
+class com.example.justa.Request {
+- String phone
+- String date
+- String text
+- String address
+- String uid
+- boolean taken
++ <<Create>> Request(String,String,String,String,boolean)
++ <<Create>> Request()
++ String getPhone()
++ void setPhone(String)
++ String getDate()
++ void setDate(String)
++ String getText()
++ void setText(String)
++ String getAddress()
++ void setAddress(String)
++ boolean isTaken()
++ void setTaken(boolean)
++ String getUid()
++ void setUid(String)
++ String toString()
++ int compareTo(Request)
+}
+
+
+class com.example.justa.MainActivity {
+- Button btRegister
+- Button btLogin
+~ Animation animOffset
+- ImageView ivOpen
+# void onCreate(Bundle)
++ void onClick(View)
+}
+
+
+class com.example.justa.Login {
+- EditText etPasswordL
+- EditText etPhoneL
+- Button btLoginIn
+- TextView tvToRegister
+- ImageView ivBackLog
+- FirebaseDatabase firebaseDatabase
+- DatabaseReference databaseReference
+- Intent go
+- SharedPreferences mPref
+- User current
+# void onCreate(Bundle)
++ void onClick(View)
++ boolean check(String,String)
+}
+
+
+
+
+android.widget.ArrayAdapter <|-- com.example.justa.AdapterRecommend
+com.example.justa.OnClickListener <|.. com.example.justa.View_Requests
+com.example.justa.OnCheckedChangeListener <|.. com.example.justa.View_Requests
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.View_Requests
+com.example.justa.OnClickListener <|.. com.example.justa.Contact
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Contact
+com.example.justa.OnClickListener <|.. com.example.justa.Open_volunteer
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Open_volunteer
+com.example.justa.OnNavigationItemSelectedListener <|.. com.example.justa.Menu_Activity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Menu_Activity
+com.example.justa.OnCheckedChangeListener <|.. com.example.justa.Register
+com.example.justa.OnClickListener <|.. com.example.justa.Register
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Register
+java.io.Serializable <|.. com.example.justa.User
+com.example.justa.OnClickListener <|.. com.example.justa.AdapterRequest
+android.widget.ArrayAdapter <|-- com.example.justa.AdapterRequest
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.SearchPlaces
+com.example.justa.OnClickListener <|.. com.example.justa.Open_needy
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Open_needy
+android.app.Service <|-- com.example.justa.MyService
+com.example.justa.OnClickListener <|.. com.example.justa.Profile
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Profile
+com.example.justa.Adapter <|-- com.example.justa.Adapter
+com.example.justa.Adapter +.. com.example.justa.Adapter$myViewHolder
+com.example.justa.ViewHolder <|-- com.example.justa.Adapter$myViewHolder
+com.example.justa.OnClickListener <|.. com.example.justa.Recommendations
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Recommendations
+com.firebase.ui.database.FirebaseRecyclerAdapter <|-- com.example.justa.MainAdapter
+com.example.justa.MainAdapter +.. com.example.justa.MainAdapter$myViewHolder
+com.example.justa.ViewHolder <|-- com.example.justa.MainAdapter$myViewHolder
+com.example.justa.Adapter <|-- com.example.justa.RecyclerviewAdapter
+com.example.justa.RecyclerviewAdapter +.. com.example.justa.RecyclerviewAdapter$OnClickListener
+com.example.justa.RecyclerviewAdapter +.. com.example.justa.RecyclerviewAdapter$ViewHolder
+com.example.justa.ViewHolder <|-- com.example.justa.RecyclerviewAdapter$ViewHolder
+com.example.justa.OnClickListener <|.. com.example.justa.Requests
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Requests
+com.example.justa.Comparable <|.. com.example.justa.Request
+com.example.justa.OnClickListener <|.. com.example.justa.MainActivity
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.MainActivity
+com.example.justa.OnClickListener <|.. com.example.justa.Login
+androidx.appcompat.app.AppCompatActivity <|-- com.example.justa.Login
+@enduml

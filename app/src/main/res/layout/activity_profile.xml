@@ -17,7 +17,7 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:src="@drawable/logo"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,10 +52,14 @@
         android:orientation="vertical"
         android:gravity="center">
 
-        <ImageView
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearanceOverlay="@style/roundedCornersImageView"
+            android:id="@+id/ivProfile"
             android:layout_width="100dp"
+            android:src="@drawable/ic_person"
             android:layout_height="100dp"
-            android:src="@drawable/ic_person"/>
+            android:scaleType="centerCrop"
+            android:layout_marginTop="8dp"/>
 
         <TextView
             android:id="@+id/tvUsernameP"
@@ -135,21 +139,13 @@
 
         <ListView
             android:id="@+id/lvRecommendations"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:gravity="center"/>
-
-        <TextView
-            android:id="@+id/tvUpdateP"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:text="עדכון פרטים אישיים"
-            android:fontFamily="@font/gan"
-            android:textColor="@color/red"
-            android:textStyle="bold"
-            android:textSize="18dp"/>
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="22dp"
+            android:gravity="center"
+            android:divider="@drawable/back"
+            android:dividerHeight="10dp"/>
 
     </LinearLayout>
 

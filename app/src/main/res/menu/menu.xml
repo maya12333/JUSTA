@@ -4,23 +4,43 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:showIn="menu_view">
 
-    <group
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/menu_police"
-            android:icon="@drawable/ic_police"
-            android:title="משטרה"
-            />
 
-        <item
-            android:id="@+id/menu_mada"
-            android:icon="@drawable/ic_hospital"
-            android:title="מד״א" />
+    <item
+        android:id="@+id/logout"
+        android:title="logout"
+        android:icon="@drawable/ic_logout"
+        app:showAsAction="ifRoom">
 
-        <item
-            android:id="@+id/menu_fire"
-            android:icon="@drawable/ic_fire"
-            android:title="מכבי אש" />
-    </group>
+    </item>
+
+    <item
+        android:id="@+id/action_manu"
+        android:title="phone_menu"
+        android:icon="@drawable/ic_phone_white"
+        app:showAsAction="ifRoom">
+
+        <menu>
+
+            <item
+                android:id="@+id/menu_police"
+                android:title="משטרה"
+                android:icon="@drawable/ic_police"
+                app:showAsAction="always"/>
+
+            <item
+                android:id="@+id/menu_mada"
+                android:title="מגן דוד אדום"
+                android:icon="@drawable/ic_hospital"
+                app:showAsAction="always"/>
+
+            <item
+                android:id="@+id/menu_fire"
+                android:title="מכבי אש"
+                android:icon="@drawable/ic_fire"
+                app:showAsAction="always"/>
+
+        </menu>
+
+    </item>
 
 </menu>

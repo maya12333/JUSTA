@@ -1,22 +1,22 @@
 package com.example.justa;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -55,6 +55,7 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
     private DatabaseReference databaseReference;
 
     private SharedPreferences sp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,7 +71,7 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         FirebaseApp.initializeApp(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
 
-        getRecommendationsFromDB();
+        getMyRecommendationsFromDB();
 
         ivAddRecommend.setOnClickListener(this);
         ivBackRec.setOnClickListener(this);
@@ -128,6 +129,11 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         String phoneV = etPhoneV.getText().toString();
         String text = etTextReco.getText().toString();
 
+        if(!check(name, phoneV, text))
+        {
+            return;
+        }
+
         databaseReference = firebaseDatabase.getReference("Recommendation");
 
         recommendation = new Recommendation(name, phoneV, text, sp.getString("phone", null));
@@ -136,7 +142,7 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot){
 
-                databaseReference.child(sp.getString("phone", null)).push().child(phoneV).setValue(recommendation);
+                databaseReference.child(phoneV).push().setValue(recommendation);
             }
 
             @Override
@@ -154,19 +160,26 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
         dialog.dismiss();
     }
 
-    public void getRecommendationsFromDB()
+    public void getMyRecommendationsFromDB()
     {
         arrayList = new ArrayList<>();
 
-        databaseReference = FirebaseDatabase.getInstance().getReference().child("Recommendation").child(sp.getString("phone", null));
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("Recommendation");
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                for(DataSnapshot currentSnap: snapshot.getChildren())
-                {
-                    arrayList.add(currentSnap.getValue(Recommendation.class));
+                for(DataSnapshot currentSnap: snapshot.getChildren()) {
+
+                    for (DataSnapshot keys: currentSnap.getChildren()) {
+
+                        Recommendation u = keys.getValue(Recommendation.class);
+
+                        if (u.getPhoneN().equals(sp.getString("phone", null))) {
+                           arrayList.add(keys.getValue(Recommendation.class));
+                        }
+                    }
                 }
             }
 
@@ -181,8 +194,97 @@ public class Recommendations extends AppCompatActivity implements View.OnClickLi
                 adapterRecommend = new AdapterRecommend(Recommendations.this, 0, 0 , arrayList);
 
                 lvAddRecommend.setAdapter(adapterRecommend);
-
             }
         });
+    }
+
+    public boolean check(String name, String phone, String text)
+    {
+        if(name.length() == 0)
+        {
+            Toast.makeText(Recommendations.this, "ENTER NAME", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(phone.length() == 0)
+        {
+            Toast.makeText(Recommendations.this, "ENTER PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(text.length() == 0)
+        {
+            Toast.makeText(Recommendations.this, "ENTER Text", Toast.LENGTH_LONG).show();
+
+            return false;
+        }
+
+        if(name.length() < 2 || name.length() > 12)
+        {
+            Toast.makeText(Recommendations.this, "USERNAME BETWEEN 2 AND 15 LETTERS", Toast.LENGTH_LONG).show();
+
+            etNameV.setText("");
+
+            return false;
+        }
+
+        if(phone.length() < 10 || phone.length() > 10)
+        {
+            Toast.makeText(Recommendations.this, "WRONG PHONE NUMBER", Toast.LENGTH_LONG).show();
+
+            etPhoneV.setText("");
+
+            return false;
+        }
+
+        return true;
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        MenuInflater inflater = getMenuInflater();
+
+        inflater.inflate(R.menu.menu, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
+        if(item.getItemId() == R.id.menu_police)
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + 100));
+            startActivity(callIntent);
+        }
+
+        if(item.getItemId() == R.id.menu_mada)
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + 101));
+            startActivity(callIntent);
+        }
+
+        if(item.getItemId() == R.id.menu_fire)
+        {
+            Intent callIntent = new Intent(Intent.ACTION_DIAL);
+            callIntent.setData(Uri.parse("tel:" + 102));
+            startActivity(callIntent);
+        }
+
+        if(item.getItemId() == R.id.logout)
+        {
+            Intent go = new Intent(Recommendations.this, MainActivity.class);
+
+            startActivity(go);
+
+            finish();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

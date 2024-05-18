@@ -8,16 +8,28 @@ public class User implements Serializable {
     private String phone;
     private String password;
     private String type;
+    private String uri;
+
+    private int counter;
 
     public User(String username, String phone, String password, String type) {
         this.username = username;
         this.phone = phone;
         this.password = password;
         this.type = type;
+        this.counter = 0;
     }
 
     public User(){
 
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getPhone() {
@@ -49,6 +61,14 @@ public class User implements Serializable {
         return username;
     }
 
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
     public void setUsername(String username) {
         this.username = username;
     }
@@ -60,6 +80,8 @@ public class User implements Serializable {
                 ", phone='" + phone + '\'' +
                 ", password='" + password + '\'' +
                 ", type='" + type + '\'' +
+                ", uri='" + uri + '\'' +
+                ", counter=" + counter +
                 '}';
     }
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background_design"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right">
+
+        <ImageButton
+            android:id="@+id/ivExitCG"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/ic_close"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@color/lightBlue" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="בחירת הוספת תמונה"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        android:fontFamily="@font/abraham"/>
+
+    <LinearLayout
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:background="@drawable/background_text_design"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="15dp"
+            android:text="העלת תמונה באמצעות"
+            android:fontFamily="@font/alefbold"
+            android:textColor="@color/black"
+            android:textSize="18dp"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="15dp">
+
+        <Button
+            android:id="@+id/btGallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:text="גלריה"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/gan"
+            android:backgroundTint="@color/white"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/btCamera"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="מצלמה"
+            android:textColor="@color/lightBlue"
+            android:fontFamily="@font/gan"
+            android:backgroundTint="@color/white"
+            android:textSize="20dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>
